@@ -25,6 +25,9 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
+    view: 'pages/sync'
+  },
+  '/test': {
     view: 'pages/home'
   },
 
@@ -43,7 +46,8 @@ module.exports.routes = {
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-
+  'post /subscribe': 'SyncController.subscribe',
+  'post /sync': 'SyncController.sync'
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
