@@ -6,39 +6,39 @@
  */
 
 module.exports = {
-    subscribe: function (req, res) {
-        roomName = 'syncRoom'
-        sails.sockets.join(req, roomName, function (err) {
-            if (!req.isSocket) {
-                return res.badRequest();
-            }
+  subscribe: function (req, res) {
+    roomName = 'syncRoom';
 
-            if (err) {
-                return res.serverError(err);
-            }
+    sails.sockets.join(req, roomName, function (err) {
+      if (!req.isSocket) {
+        return res.badRequest();
+      }
 
-            return res.json({
-                message: 'Subscribed to ' + roomName + '!'
-            });
-        });
-    },
+      if (err) {
+        return res.serverError(this.err);
+      }
 
-    sync: function (req, res) {
-        body = req.body
-        data = body.data
+      return res.json({
+        message: 'Subscribed to ' + roomName + '!'
+      });
+    });
+  },
 
-        roomName = 'syncRoom'
+  sync: function (req, res) {
+    body = req.body;
+    data = body.data;
 
-        // Join to room syncRoom
-        sails.sockets.join(req, roomName);
+    roomName = 'syncRoom';
 
-        // Broadcast a notification to all the sockets who have joined the "syncRoom" room
-        sails.sockets.broadcast(roomName, 'broadcast', { message: data }, req);
+    // Join to room syncRoom
+    sails.sockets.join(req, roomName);
 
-        return res.json({
-            message: 'Broadcasted'
-        });
-    }
+    // Broadcast a notification to all the sockets who have joined the "syncRoom" room
+    sails.sockets.broadcast(roomName, 'broadcast', { message: data }, req);
+
+    return res.json({
+      message: 'Broadcasted'
+    });
+  }
 
 };
-

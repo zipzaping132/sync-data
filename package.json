@@ -16,9 +16,11 @@
     "async": "2.0.1"
   },
   "devDependencies": {
-    "@sailshq/eslint": "^4.19.3"
+    "@sailshq/eslint": "^4.19.3",
+    "husky": "^0.14.3"
   },
   "scripts": {
+    "precommit": "npm test",
     "start": "NODE_ENV=production node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
@@ -27,9 +29,9 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hung/sync-data.git"
+    "url": "git://github.com/zipzaping132/sync-data.git"
   },
-  "author": "hung",
+  "author": "zipzaping132",
   "license": "",
   "engines": {
     "node": ">=8.11"
