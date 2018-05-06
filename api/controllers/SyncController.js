@@ -24,13 +24,16 @@ module.exports = {
     },
 
     sync: function (req, res) {
+        body = req.body
+        data = body.data
+
         roomName = 'syncRoom'
 
         // Join to room syncRoom
         sails.sockets.join(req, roomName);
 
         // Broadcast a notification to all the sockets who have joined the "syncRoom" room
-        sails.sockets.broadcast(roomName, 'broadcast', { message: 'hi there!' }, req);
+        sails.sockets.broadcast(roomName, 'broadcast', { message: data }, req);
 
         return res.json({
             message: 'Broadcasted'
